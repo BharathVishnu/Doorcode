@@ -1,13 +1,14 @@
+import 'package:doorcode_nfc/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
-import 'register.dart';
-class Login extends StatefulWidget {
+
+class Register extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false; // State variable for password visibility
@@ -31,40 +32,23 @@ class _LoginState extends State<Login> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 50.0),
+              SizedBox(height: 25.0),
               // Centered logo image
               Center(
                 child: Image.asset(
                   'assets/logo.png',
-                  width: 200.0,
-                  height: 200.0,
+                  width: 100.0,
+                  height: 100.0,
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 50.0),
+              SizedBox(height: 20.0),
+              buildTextField('NAME', false, _emailController, 'assets/logo.png', true),
+              SizedBox(height: 2.0),
               buildTextField('EMAIL', false, _emailController, 'assets/logo.png', true),
-              SizedBox(height: 30,),
+              buildTextField('PHONE NO', false, _emailController, 'assets/logo.png', true),
               buildTextField('PASSWORD', true, _passwordController, 'assets/logo.png', false),
-              SizedBox(height: 2,),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: TextButton(
-                    onPressed: () {
-                      // forgot password onpress
-                    },
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        color: Colors.black, 
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
+              buildTextField('CONFIRM PASSWORD', true, _passwordController, 'assets/logo.png', false),
               SizedBox(height: 24,),
               Center(
                 child: SizedBox(
@@ -82,7 +66,7 @@ class _LoginState extends State<Login> {
                     ),
                     onPressed: () {},
                     child: Text(
-                      'LOGIN',
+                      'SIGN UP',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -97,7 +81,7 @@ class _LoginState extends State<Login> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'NEW HERE? ',
+                      text: 'ALREADY REGISTERED? ',
                       style: TextStyle(
                         fontFamily: 'BebasNeue',
                         color: Colors.grey, // Color for "NEW HERE?"
@@ -105,7 +89,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     TextSpan(
-                      text: 'REGISTER',
+                      text: 'SIGN IN',
                       style: TextStyle(
                         fontFamily: 'BebasNeue',
                         color: Colors.black, 
@@ -113,10 +97,9 @@ class _LoginState extends State<Login> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          // Navigate to the registration page
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Register()),
+                            MaterialPageRoute(builder: (context) => Login()),
                           ); 
                         },
                     ),
@@ -136,7 +119,7 @@ class _LoginState extends State<Login> {
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const EdgeInsets.all(30.0),
           child: Image.asset(
             logoAsset, 
             width: 20.0,
@@ -145,8 +128,8 @@ class _LoginState extends State<Login> {
         ),
         Expanded(
           child: Container(
-            margin: EdgeInsets.symmetric(vertical: 6.0),
             padding: EdgeInsets.symmetric(horizontal: 10.0),
+            margin: EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -187,7 +170,6 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
-        SizedBox(width: 30, height: 30,)
       ],
     );
   }
