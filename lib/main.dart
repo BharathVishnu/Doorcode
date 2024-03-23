@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
       title: 'My Splash Screen App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'BebasNeue', //default font
       ),
-      home: SplashScreen(), // Display the splash screen first
+      home: SplashScreen(),//splash screen made default
     );
   }
 }
