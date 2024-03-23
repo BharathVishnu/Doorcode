@@ -1,84 +1,194 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/gestures.dart';
 
-class Login extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isPasswordVisible = false; // State variable for password visibility
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20.0),
-            // DoorCode text
-            Text(
-              'DOORCODE',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20.0),
+              // DoorCode text
+              Text(
+                'DOORCODE',
+                style: TextStyle(
+                  fontFamily: 'BebasNeue',
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(height: 50.0),
-            // Centered logo image
-            Center(
-              child: Image.asset(
-                'assets/logo.png', // Replace with your logo image asset
-                width: 200.0,
-                height: 200.0,
-                fit: BoxFit.contain,
+              SizedBox(height: 50.0),
+              // Centered logo image
+              Center(
+                child: Image.asset(
+                  'assets/logo.png',
+                  width: 200.0,
+                  height: 200.0,
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
-            SizedBox(height: 50.0),
-            SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+              SizedBox(height: 50.0),
+              buildTextField('EMAIL', false, _emailController, 'assets/logo.png', true),
+              SizedBox(height: 30,),
+              buildTextField('PASSWORD', true, _passwordController, 'assets/logo.png', false),
+              SizedBox(height: 2,),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: TextButton(
+                    onPressed: () {
+                      // forgot password onpress
+                    },
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                        color: Colors.black, 
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        hintText: 'Email',
+              SizedBox(height: 24,),
+              Center(
+                child: SizedBox(
+                  width: 320,
+                  height: 60,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black), 
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your email address';
-                        }
-                        return null;
-                      },
+                      
                     ),
-                    const SizedBox(height: 20.0),
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: 'Password',
+                    onPressed: () {},
+                    child: Text(
+                      'LOGIN',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
                       ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        return null;
-                      },
+                      ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10,),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'NEW HERE? ',
+                      style: TextStyle(
+                        fontFamily: 'BebasNeue',
+                        color: Colors.grey, // Color for "NEW HERE?"
+                        fontSize: 16,
+                      ),
                     ),
-                    const SizedBox(height: 20.0),
-                    
-                    const SizedBox(height: 20.0),
+                    TextSpan(
+                      text: 'REGISTER',
+                      style: TextStyle(
+                        fontFamily: 'BebasNeue',
+                        color: Colors.black, // Color for "REGISTER"
+                        fontSize: 16,
+                      ),
+                      // recognizer: TapGestureRecognizer()
+                      //   ..onTap = () {
+                      //     // Navigate to the registration page
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(builder: (context) =>),
+                      //     ); 
+                      //   },
+                    ),
                   ],
                 ),
               ),
-            ),
-          ],
+            )
+
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget buildTextField(String hintText, bool isPassword, TextEditingController controller, String logoAsset, bool lowerCase) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Image.asset(
+            logoAsset, 
+            width: 20.0,
+            height: 20.0,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.symmetric(vertical: 6.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.black,
+                  width: 2.0,
+                ),
+              ),
+            ),
+            child: TextField(
+              obscureText: isPassword && !_isPasswordVisible,
+              controller: controller,
+              onChanged: (value) {
+                if (lowerCase) {
+                  controller.value = TextEditingValue(
+                    text: value.toLowerCase(),
+                    selection: controller.selection,
+                  );
+                }
+              },
+              decoration: InputDecoration(
+                hintText: hintText,
+                border: InputBorder.none,
+                suffixIcon: isPassword
+                    ? IconButton(
+                        icon: Icon(
+                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {
+                          // Toggle password visibility
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                      )
+                    : null,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(width: 30, height: 30,)
+      ],
     );
   }
 }

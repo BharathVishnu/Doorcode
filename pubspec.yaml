@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +20,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
+    - assets/email.png
+    - assets/phone.png
+    - assets/user.png
+
+
+  fonts:
+    - family: BebasNeue
+      fonts:
+        - asset: assets/fonts/BebasNeue-Regular.ttf
