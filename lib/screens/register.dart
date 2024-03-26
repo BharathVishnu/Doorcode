@@ -1,7 +1,11 @@
-import 'package:doorcode_nfc/login.dart';
+import 'package:doorcode_nfc/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+
+import '../controller/auth_controller.dart';
+import '../controller/input_validators.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -11,6 +15,9 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _cnfPassController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   bool _isPasswordVisible = false; // State variable for password visibility
 
   @override
@@ -43,12 +50,12 @@ class _RegisterState extends State<Register> {
                 ),
               ),
               SizedBox(height: 20.0),
-              buildTextField('NAME', false, _emailController, 'assets/logo.png', true),
+              buildTextField('NAME', false, _nameController, 'assets/logo.png', true),
               SizedBox(height: 2.0),
               buildTextField('EMAIL', false, _emailController, 'assets/logo.png', true),
-              buildTextField('PHONE NO', false, _emailController, 'assets/logo.png', true),
+              buildTextField('PHONE NO', false, _phoneController, 'assets/logo.png', true),
               buildTextField('PASSWORD', true, _passwordController, 'assets/logo.png', false),
-              buildTextField('CONFIRM PASSWORD', true, _passwordController, 'assets/logo.png', false),
+              buildTextField('CONFIRM PASSWORD', true, _cnfPassController, 'assets/logo.png', false),
               SizedBox(height: 24,),
               Center(
                 child: SizedBox(
@@ -64,7 +71,15 @@ class _RegisterState extends State<Register> {
                       ),
                       
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (InputValidator.validateField("Name", _nameController.text.trim()) &&
+                            InputValidator.validateField("Email", _emailController.text.trim())) {
+                          if (InputValidator.validatePassword(_passwordController.text, _cnfPassController.text)) {
+                            AuthController.instance
+                                .registerUser(_emailController.text.trim(), _passwordController.text.trim(),_nameController.text.trim(),_phoneController.text.trim());
+                          }
+                        }
+                    },
                     child: Text(
                       'SIGN UP',
                       style: TextStyle(
@@ -97,10 +112,7 @@ class _RegisterState extends State<Register> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Login()),
-                          ); 
+                          Get.to(Login());
                         },
                     ),
                   ],

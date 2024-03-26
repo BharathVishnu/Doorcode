@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,9 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Simulate a long-running task by delaying for 3 seconds
     Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => Login()),
-      );
+      Get.to(Login());
     });
   }
 
@@ -30,7 +29,6 @@ class _SplashScreenState extends State<SplashScreen> {
             Positioned.fill(
               child: Image.asset(
                 'assets/logo.png', // Replace with your image asset
-
               ),
             ),
           ],
