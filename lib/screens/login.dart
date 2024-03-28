@@ -1,3 +1,4 @@
+import 'package:doorcode_nfc/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
@@ -119,7 +120,7 @@ class _LoginState extends State<Login> {
                         text: 'NEW HERE? ',
                         style: TextStyle(
                           fontFamily: 'BebasNeue',
-                          color: Colors.grey, // Color for "NEW HERE?"
+                          color: Colors.grey,
                           fontSize: 16,
                         ),
                       ),

@@ -32,7 +32,7 @@ class AuthController extends GetxController {
       } else {
         isLoging = true;
         update();
-        Get.offAll(() => const HomePage());
+        Get.offAll(() => HomePage());
       }
     });
   }

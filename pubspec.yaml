@@ -13,12 +13,14 @@ dependencies:
   firebase_core: ^2.27.1
   get: ^4.6.6
   cloud_firestore: ^4.15.9
-  
+  geolocator: ^7.7.0
+  carousel_slider: ^4.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  
 
 flutter:
   uses-material-design: true
@@ -27,6 +29,7 @@ flutter:
     - assets/email.png
     - assets/phone.png
     - assets/user.png
+    - assets/hestia.png
 
 
   fonts:
