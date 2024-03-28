@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import '../controller/auth_controller.dart';
 import 'register.dart';
+
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -10,6 +14,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _forgotEmailController = TextEditingController();
   bool _isPasswordVisible = false; // State variable for password visibility
 
   @override
@@ -42,22 +47,30 @@ class _LoginState extends State<Login> {
                 ),
               ),
               SizedBox(height: 50.0),
-              buildTextField('EMAIL', false, _emailController, 'assets/logo.png', true),
-              SizedBox(height: 30,),
-              buildTextField('PASSWORD', true, _passwordController, 'assets/logo.png', false),
-              SizedBox(height: 2,),
+              buildTextField(
+                  'EMAIL', false, _emailController, 'assets/logo.png', true),
+              SizedBox(
+                height: 30,
+              ),
+              buildTextField('PASSWORD', true, _passwordController,
+                  'assets/logo.png', false),
+              SizedBox(
+                height: 2,
+              ),
               Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: EdgeInsets.only(right: 20.0),
                   child: TextButton(
                     onPressed: () {
-                      // forgot password onpress
+                      AuthController.instance.forgorPassword(_forgotEmailController.text.trim());
+                                _forgotEmailController.text = "";
+                                Get.back();
                     },
                     child: Text(
                       'Forgot Password?',
                       style: TextStyle(
-                        color: Colors.black, 
+                        color: Colors.black,
                         fontSize: 14,
                       ),
                     ),
@@ -65,66 +78,72 @@ class _LoginState extends State<Login> {
                 ),
               ),
 
-              SizedBox(height: 24,),
+              SizedBox(
+                height: 24,
+              ),
               Center(
                 child: SizedBox(
                   width: 330,
                   height: 60,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black), 
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      AuthController.instance.login(_emailController.text.trim(), _passwordController.text.trim());
+                    },
                     child: Text(
                       'LOGIN',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                       ),
-                      ),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
-            Center(
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'NEW HERE? ',
-                      style: TextStyle(
-                        fontFamily: 'BebasNeue',
-                        color: Colors.grey, // Color for "NEW HERE?"
-                        fontSize: 16,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'REGISTER',
-                      style: TextStyle(
-                        fontFamily: 'BebasNeue',
-                        color: Colors.black, 
-                        fontSize: 16,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // Navigate to the registration page
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Register()),
-                          ); 
-                        },
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: 10,
               ),
-            )
-
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'NEW HERE? ',
+                        style: TextStyle(
+                          fontFamily: 'BebasNeue',
+                          color: Colors.grey, // Color for "NEW HERE?"
+                          fontSize: 16,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'REGISTER',
+                        style: TextStyle(
+                          fontFamily: 'BebasNeue',
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            // Navigate to the registration page
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => Register()),
+                            // );
+                            Get.to(Register());
+                          },
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -132,13 +151,14 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget buildTextField(String hintText, bool isPassword, TextEditingController controller, String logoAsset, bool lowerCase) {
+  Widget buildTextField(String hintText, bool isPassword,
+      TextEditingController controller, String logoAsset, bool lowerCase) {
     return Row(
       children: [
         Padding(
           padding: const EdgeInsets.all(32.0),
           child: Image.asset(
-            logoAsset, 
+            logoAsset,
             width: 20.0,
             height: 20.0,
           ),
@@ -172,7 +192,9 @@ class _LoginState extends State<Login> {
                 suffixIcon: isPassword
                     ? IconButton(
                         icon: Icon(
-                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                           color: Colors.grey,
                         ),
                         onPressed: () {
@@ -187,7 +209,10 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
-        SizedBox(width: 30, height: 30,)
+        SizedBox(
+          width: 30,
+          height: 30,
+        )
       ],
     );
   }

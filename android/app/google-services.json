@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "548944456332",
+    "project_id": "doorcode-23c79",
+    "storage_bucket": "doorcode-23c79.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548944456332:android:e0f5aeb2fd37ce62f7a9a9",
+        "android_client_info": {
+          "package_name": "com.example.doorcode_nfc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA9m8KPJuBYENv1v4Cduob4epAuXJGb0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
