@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 class ScrollableElement extends StatelessWidget {
   final String image;
   final String label;
+  final VoidCallback onTap;
 
   const ScrollableElement({
     Key? key,
     required this.image,
     required this.label,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return GestureDetector
+    (
+      onTap: onTap,
+      child:Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
@@ -27,6 +32,6 @@ class ScrollableElement extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
       ],
-    );
+    ));
   }
 }

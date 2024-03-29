@@ -2,45 +2,78 @@ import 'package:flutter/material.dart';
 import 'carouselcon.dart';
 
 class Carousel extends StatelessWidget {
+  final Function(String) onIconClicked;
+
+  const Carousel({Key? key, required this.onIconClicked}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 4,
-      child:
-      Container(
-      padding: EdgeInsets.all(22.0),
-      height: 97.0,
-      width: MediaQuery.of(context).size.width,
-      color: Colors.white, // Adjust the height as needed
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(width: 25.0),
-            ScrollableElement(
-              image: 'assets/logo.png',
-              label: 'Concerts',
+      elevation: 16,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.all(16.0),
+            height: 87.0,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.white, // Adjust the height as needed
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(width: 25.0),
+                  ScrollableElement(
+                    image: 'assets/logo.png',
+                    label: 'Concerts',
+                    onTap: () {
+                      onIconClicked('Concerts');
+                    },
+                  ),
+                  SizedBox(width: 75.0),
+                  ScrollableElement(
+                    image: 'assets/logo.png',
+                    label: 'Clubs',
+                    onTap: () {
+                      onIconClicked('Clubs');
+                    },
+                  ),
+                  SizedBox(width: 75.0),
+                  ScrollableElement(
+                    image: 'assets/logo.png',
+                    label: 'Sports',
+                    onTap: () {
+                      onIconClicked('Sports');
+                    },
+                  ),
+                  SizedBox(width: 75.0),
+                  ScrollableElement(
+                    image: 'assets/logo.png',
+                    label: 'Standups',
+                    onTap: () {
+                      onIconClicked('Standups');
+                    },
+                  ),
+                  SizedBox(width: 50.0),
+                  // Add more ScrollableElements here as needed
+                ],
+              ),
             ),
-            SizedBox(width: 75.0),
-            ScrollableElement(
-              image: 'assets/logo.png',
-              label: 'Sports',
+          ),
+          SizedBox(height: 20.0), // Add some space between the container and the text
+          Padding(
+            padding: const EdgeInsets.only(left: 30.0), // Add left margin
+            child: Text(
+              'UPCOMING EVENTS',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(width: 75.0),
-            ScrollableElement(
-              image: 'assets/logo.png',
-              label: 'Clubs',
-            ),
-            SizedBox(width: 75.0),
-            ScrollableElement(
-              image: 'assets/logo.png',
-              label: 'Standups',
-            ),
-            SizedBox(width: 75.0),// Add more ScrollableElements here as needed
-          ],
-        ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 }

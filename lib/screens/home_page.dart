@@ -1,6 +1,7 @@
+import 'package:doorcode_nfc/components/eventsList.dart';
+import 'package:doorcode_nfc/screens/profile.dart';
 import 'package:flutter/material.dart';
-import 'page1.dart'; // Import Page1 widget
-import 'page2.dart'; // Import Page2 widget
+import 'package:doorcode_nfc/screens/events.dart';
 import 'package:doorcode_nfc/components/customIcon.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,9 +12,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
-    Page1(), // Use Page1 widget
-    Page2(),
-    Page1(), // Use Page2 widget
+    Events(),
+    Profile(),
+    Profile(),
+     // Use Page2 widget
   ];
 
   void _onItemTapped(int index) {

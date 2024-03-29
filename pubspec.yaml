@@ -30,6 +30,9 @@ flutter:
     - assets/phone.png
     - assets/user.png
     - assets/hestia.png
+    - assets/proshow.png
+    - assets/hestia2.png
+    - assets/nexera.png
 
 
   fonts:
