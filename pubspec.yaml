@@ -15,6 +15,8 @@ dependencies:
   cloud_firestore: ^4.15.9
   geolocator: ^7.7.0
   carousel_slider: ^4.0.0
+  image_picker: ^0.8.4+4
+  razorpay_flutter: ^1.2.6
 
 dev_dependencies:
   flutter_test:

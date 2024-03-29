@@ -1,5 +1,9 @@
 import 'package:doorcode_nfc/components/bar.dart';
 import 'package:doorcode_nfc/components/profileBar.dart';
+import 'package:doorcode_nfc/screens/accountInfo.dart';
+import 'package:doorcode_nfc/screens/listedEvents.dart';
+import 'package:doorcode_nfc/screens/tickets.dart';
+import 'package:doorcode_nfc/screens/validate.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -10,13 +14,23 @@ class Profile extends StatelessWidget {
         appBar: Bar(text: 'NAME', iconData: Icons.account_circle, onPressed: () {},),
         body: Column(
           children: [
-            CustomContainer(iconPath: 'assets/logo.png', name: 'YOUR EVENTS'),
-            CustomContainer(iconPath: 'assets/logo.png', name: 'ACCOUNT INFORMATION'),
-            CustomContainer(iconPath: 'assets/logo.png', name: 'REWARDS'),
-            CustomContainer(iconPath: 'assets/logo.png', name: 'LIST YOUR SHOW'),
-            CustomContainer(iconPath: 'assets/logo.png', name: 'SETTINGS'),
+            CustomContainer(iconPath: 'assets/logo.png', name: 'YOUR EVENTS',onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ListedEvents()),
+    );},),
+            CustomContainer(iconPath: 'assets/logo.png', name: 'ACCOUNT INFORMATION',onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AccountInfo()),
+    );},),
+            CustomContainer(iconPath: 'assets/logo.png', name: 'LIST YOUR SHOW',onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => NFCValidate()),
+    );},),
             CustomContainer(iconPath: 'assets/logo.png', name: 'LOGOUT'),
-            SizedBox(height: 100,),
+            SizedBox(height: 250,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

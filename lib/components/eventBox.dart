@@ -1,3 +1,4 @@
+import 'package:doorcode_nfc/screens/booking.dart';
 import 'package:flutter/material.dart';
 class MyBox extends StatefulWidget {
   final String imagePath;
@@ -14,7 +15,10 @@ class _MyBoxState extends State<MyBox> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Handle onTap event
+         Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Booking(heading: 'HESTIA',price: '₹2000',)),
+        );
       },
       child:Column( 
       children:[
