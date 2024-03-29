@@ -33,6 +33,7 @@ flutter:
     - assets/proshow.png
     - assets/hestia2.png
     - assets/nexera.png
+    - assets/nfc.png
 
 
   fonts:

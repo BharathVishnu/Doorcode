@@ -1,6 +1,6 @@
 import 'package:doorcode_nfc/components/eventsList.dart';
 import 'package:doorcode_nfc/screens/profile.dart';
-import 'package:doorcode_nfc/screens/tickets.dart';
+import 'package:doorcode_nfc/screens/ticketsList.dart';
 import 'package:flutter/material.dart';
 import 'package:doorcode_nfc/screens/events.dart';
 import 'package:doorcode_nfc/components/customIcon.dart';
