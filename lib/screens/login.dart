@@ -98,6 +98,10 @@ class _LoginState extends State<Login> {
                     ),
                     onPressed: () {
                       AuthController.instance.login(_emailController.text.trim(), _passwordController.text.trim());
+                              Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => HomePage()),
+                            );
                     },
                     child: Text(
                       'LOGIN',

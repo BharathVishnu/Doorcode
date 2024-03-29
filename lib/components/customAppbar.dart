@@ -39,7 +39,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       setState(() {
         _currentLocation = 'Error fetching location';
       });
-      throw Exception('Error getting location'); // Throw an error instead of returning null
+      throw Exception('Error getting location');
     }
   }
 

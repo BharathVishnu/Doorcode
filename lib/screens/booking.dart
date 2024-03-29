@@ -1,5 +1,7 @@
+import 'package:doorcode_nfc/components/artists.dart';
+import 'package:doorcode_nfc/components/viewer.dart';
 import 'package:flutter/material.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Booking extends StatelessWidget {
   final String heading;
@@ -39,7 +41,7 @@ class Booking extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 20), // Add space at the top
               Container(
@@ -61,10 +63,72 @@ class Booking extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 30,),
+              Row(
+                children: [
+                  SizedBox(width: 45,),
+                  Icon(Icons.calendar_today), // Calendar icon
+                  SizedBox(width: 8), 
+                  Text('Friday  22 MAR  2024   7.00 pm to 11.00 pm',
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12,),), // Text
+                ],
+              ),
+              SizedBox(height: 5,),
+              Row(
+                children: [
+                  SizedBox(width: 45,),
+                  Icon(Icons.location_on),
+                  SizedBox(width: 8),
+                  Text('TKMCE KARICODE KOLLAM',
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12,),), // Text
+                ],
+              ),
+              SizedBox(height: 2,),
+              Row(
+                children: [
+                  SizedBox(width: 45,), // Location icon  
+                  TextButton(
+                    onPressed: () {
+                      _launchMapsUrl('TKMCE KARICODE KOLLAM');
+                    },
+                    child: Text(
+                      'VIEW ON MAP',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Colors.blue, // Change the text color to blue
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Divider(
+                color: Colors.black, // Set the color of the line
+                thickness: 1, // Set the thickness of the line
+                height: 20, // Set the height of the line (optional)
+                indent: 20, // Set the left indent of the line (optional)
+                endIndent: 20, // Set the right indent of the line (optional)
+              ),
+              SizedBox(height: 10,),
+              ExpandableContainer(),
+              SizedBox(height: 10,),
+              Row(
+                children:[
+                  SizedBox(width: 42,),
+                  Text(
+                'ARTISTS LINEUP',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              )]),
+              ScrollableCircleRow(),
             ],
           ),
         ),
-
          bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +148,7 @@ class Booking extends StatelessWidget {
             Spacer(), // Add space between price and button
             ElevatedButton(
               onPressed: () {
-                _openCheckout(context);
+                // Add functionality for booking button
               },
               
               style: ElevatedButton.styleFrom(// Black button color
@@ -112,38 +176,13 @@ class Booking extends StatelessWidget {
     );
   }
 
-  void _openCheckout(BuildContext context) {
-    var options = {
-      'key': 'YOUR_API_KEY',
-      'amount': 1, // Amount in the smallest currency unit (e.g., paise in INR)
-      'name': 'DOORCODE',
-      'description': 'Event Fee',
-      'prefill': {'contact': 'YOUR_CONTACT_NUMBER', 'email': 'YOUR_EMAIL'},
-      'external': {
-        'wallets': ['paytm'] // Other wallets supported by Razorpay
-      }
-    };
-
-    try {
-      final Razorpay _razorpay = Razorpay();
-      _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, (PaymentSuccessResponse response) {
-        // Payment success callback
-        print("Payment success: ${response.paymentId}");
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Payment successful')));
-      });
-      _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, (PaymentFailureResponse response) {
-        // Payment error callback
-        print("Payment error: ${response.code} - ${response.message}");
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Payment failed')));
-      });
-      _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, (ExternalWalletResponse response) {
-        // External wallet callback
-        print("External wallet: ${response.walletName}");
-      });
-
-      _razorpay.open(options);
-    } catch (e) {
-      print("Error initiating payment: $e");
+  // Function to launch Google Maps URL
+  void _launchMapsUrl(String location) async {
+    final url = 'https://www.google.com/maps/search/?api=1&query=$location';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 }

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'BebasNeue', //default font
       ),
-      home: HomePage(),//splash screen made default
+      home: SplashScreen(),//splash screen made default
     );
   }
 }

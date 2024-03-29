@@ -16,8 +16,8 @@ dependencies:
   geolocator: ^7.7.0
   carousel_slider: ^4.0.0
   image_picker: ^0.8.4+4
-  razorpay_flutter: ^1.2.6
-
+  url_launcher: ^6.0.9
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
