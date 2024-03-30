@@ -55,41 +55,74 @@ class _CustomAppBarState extends State<CustomAppBar> {
           future: _getLocation(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Row(
+              return Column(
                 children: [
-                  SizedBox(width: 10,),
-                  Icon(Icons.location_on, color: Colors.black,size: 30,),
-                  SizedBox(width: 12.0),
-                  Text(
-                    'Fetching location...',
-                    style: TextStyle(color: Colors.black,fontSize: 24),
+                  SizedBox(
+                    height: 35,
                   ),
-                  SizedBox(width: 130,),
-                  IconButton(
-                    icon: Icon(Icons.search, color: Colors.black,size: 32,),
-                    onPressed: () {
-                      // Implement search functionality here
-                    },
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.location_on,
+                        color: Colors.black,
+                        size: 30,
+                      ),
+                      SizedBox(width: 12.0),
+                      Text(
+                        'Fetching location...',
+                        style: TextStyle(color: Colors.black, fontSize: 24),
+                      ),
+                      Expanded(child: Container()), // Added Expanded widget
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                            size: 32,
+                          ),
+                          onPressed: () {
+                            // Implement search functionality here
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               );
             } else if (snapshot.hasError) {
               return Row(
                 children: [
-                  SizedBox(width: 10,),
-                  Icon(Icons.location_on, color: Colors.black,size: 30,),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(
+                    Icons.location_on,
+                    color: Colors.black,
+                    size: 30,
+                  ),
                   SizedBox(width: 8.0),
                   Text(
                     'Error fetching location',
                     style: TextStyle(color: Colors.black),
                   ),
-                  SizedBox(width: 130,),
-                  IconButton(
-                    icon: Icon(Icons.search, color: Colors.black,size: 32,),
-                    onPressed: () {
-                      // Implement search functionality here
-                    },
-                  ),  
+                  Expanded(child: Container()), // Added Expanded widget
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.black,
+                        size: 32,
+                      ),
+                      onPressed: () {
+                        // Implement search functionality here
+                      },
+                    ),
+                  ),
                 ],
               );
             } else if (snapshot.hasData) {
@@ -98,21 +131,34 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 children: [
                   Row(
                     children: [
-                      SizedBox(width: 10,),
-                      Icon(Icons.location_on, color: Colors.black,size: 30,),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.location_on,
+                        color: Colors.black,
+                        size: 30,
+                      ),
                       SizedBox(width: 8.0),
                       Text(
                         'Lat: ${snapshot.data!.latitude}, Long: ${snapshot.data!.longitude}',
-                        style: TextStyle(color: Colors.black,fontSize: 24),
+                        style: TextStyle(color: Colors.black, fontSize: 24),
                       ),
                     ],
                   ),
-                  SizedBox(width: 130,), 
-                  IconButton(
-                    icon: Icon(Icons.search, color: Colors.black,size: 32,),
-                    onPressed: () {
-                      // Implement search functionality here
-                    },
+                  Expanded(child: Container()), // Added Expanded widget
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.black,
+                        size: 32,
+                      ),
+                      onPressed: () {
+                        // Implement search functionality here
+                      },
+                    ),
                   ),
                 ],
               );

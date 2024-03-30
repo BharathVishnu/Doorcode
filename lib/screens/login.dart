@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import '../controller/auth_controller.dart';
+import 'forgot_password_page.dart';
 import 'register.dart';
-
 
 class Login extends StatefulWidget {
   @override
@@ -64,9 +64,7 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsets.only(right: 20.0),
                   child: TextButton(
                     onPressed: () {
-                      AuthController.instance.forgorPassword(_forgotEmailController.text.trim());
-                                _forgotEmailController.text = "";
-                                Get.back();
+                      Get.to(ForgotPasswordPage());
                     },
                     child: Text(
                       'Forgot Password?',
@@ -97,11 +95,9 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onPressed: () {
-                      AuthController.instance.login(_emailController.text.trim(), _passwordController.text.trim());
-                              Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => HomePage()),
-                            );
+                      AuthController.instance.login(
+                          _emailController.text.trim(),
+                          _passwordController.text.trim());
                     },
                     child: Text(
                       'LOGIN',

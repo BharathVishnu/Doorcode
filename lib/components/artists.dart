@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ScrollableCircleRow extends StatelessWidget {
+  final List<String> artists;
+
+  const ScrollableCircleRow({Key? key, required this.artists})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150, // Set a fixed height for the container
-      child: ListView(
+      height: 150,
+      child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        children: [
-          CircleItem(imagePath: 'assets/hestia.png', label: 'ARJITH SINGH'),
-          CircleItem(imagePath: 'assets/hestia.png', label: 'ARJITH SINGH'),
-          CircleItem(imagePath: 'assets/hestia.png', label: 'ARJITH SINGH'),
-          CircleItem(imagePath: 'assets/hestia.png', label: 'ARJITH SINGH'),
-          CircleItem(imagePath: 'assets/hestia.png', label: 'ARJITH SINGH'),
-          CircleItem(imagePath: 'assets/hestia.png', label: 'ARJITH SINGH'),
-          // Add more CircleItem widgets as needed
-        ],
+        itemCount: artists.length,
+        itemBuilder: (context, index) {
+          return CircleItem(
+              imagePath: 'assets/hestia.png', label: artists[index]);
+        },
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:doorcode_nfc/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
