@@ -23,7 +23,7 @@ class Carousel extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(width: 25.0),
+                  SizedBox(width: 15.0),
                   ScrollableElement(
                     image: 'assets/logo.png',
                     label: 'Concerts',
@@ -31,7 +31,7 @@ class Carousel extends StatelessWidget {
                       onIconClicked('Concerts');
                     },
                   ),
-                  SizedBox(width: 75.0),
+                  SizedBox(width: 55.0),
                   ScrollableElement(
                     image: 'assets/logo.png',
                     label: 'Clubs',
@@ -39,7 +39,7 @@ class Carousel extends StatelessWidget {
                       onIconClicked('Clubs');
                     },
                   ),
-                  SizedBox(width: 75.0),
+                  SizedBox(width: 55.0),
                   ScrollableElement(
                     image: 'assets/logo.png',
                     label: 'Sports',
@@ -47,7 +47,7 @@ class Carousel extends StatelessWidget {
                       onIconClicked('Sports');
                     },
                   ),
-                  SizedBox(width: 75.0),
+                  SizedBox(width: 55.0),
                   ScrollableElement(
                     image: 'assets/logo.png',
                     label: 'Standups',
@@ -61,7 +61,9 @@ class Carousel extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20.0), // Add some space between the container and the text
+          SizedBox(
+              height:
+                  20.0), // Add some space between the container and the text
           Padding(
             padding: const EdgeInsets.only(left: 30.0), // Add left margin
             child: Text(
