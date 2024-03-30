@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../screens/login.dart';
 
-
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
   late Rx<User?> _user;
@@ -28,11 +27,11 @@ class AuthController extends GetxController {
       if (user == null) {
         isLoging = false;
         update();
-        Get.offAll(() =>  Login());
+        Get.offAll(() => Login());
       } else {
         isLoging = true;
         update();
-        Get.offAll(() => const HomePage());
+        Get.offAll(() => HomePage());
       }
     });
   }
@@ -41,15 +40,19 @@ class AuthController extends GetxController {
     try {
       isLoging = true;
       update();
-      await auth.createUserWithEmailAndPassword(email: email, password: password);
-      
-      await FirebaseFirestore.instance.collection('user').doc(auth.currentUser!.uid).set({
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'dob':'',
-      'gender':'',
-    });
+      await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+
+      await FirebaseFirestore.instance
+          .collection('user')
+          .doc(auth.currentUser!.uid)
+          .set({
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'dob': '',
+        'gender': '',
+      });
 
       getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
     } on FirebaseAuthException catch (e) {
@@ -60,23 +63,30 @@ class AuthController extends GetxController {
 
   void login(email, password) async {
     try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
       isLoging = true;
       update();
-      await auth.signInWithEmailAndPassword(email: email, password: password);
       getSuccessSnackBar("Successfully logged in as ${_user.value!.email}");
+
+      //   await FirebaseFirestore.instance.collection('event_info').add({
+      //   'IFSC_code': 'cnr3231',
+      //   'account_holder': 'Javad',
+      //   'account_no': 313234656,
+      //   'artists': {'arjit',}
+      //   'bank_name': 'canara',
+      //   'date_from': Timestamp.fromDate(DateTime(2024, 3, 19, 21, 0, 0)),
+      //   'date_to': Timestamp.fromDate(DateTime(2024, 3, 21, 21, 0, 0)),
+      //   'email': 'javadshajahan2003@gmail.com',
+      //   'event_id': 12345,
+      //   'event_name': 'fugeniz',
+      //   'event_type': 'standups',
+      //   'more_info': 'edm,disco',
+      //   'price': 2000,
+      //   'venue':'TKM'
+      // });
     } on FirebaseAuthException catch (e) {
       //define error
       getErrorSnackBar("Login Failed", e);
-    }
-  }
-
-
-  void forgorPassword(email) async {
-    try {
-      await auth.sendPasswordResetEmail(email: email);
-      getSuccessSnackBar("Reset mail sent successfully. Check mail!");
-    } on FirebaseAuthException catch (e) {
-      getErrorSnackBar("Error", e);
     }
   }
 
