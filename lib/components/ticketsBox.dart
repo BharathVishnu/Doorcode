@@ -26,7 +26,7 @@ class TicketsBox extends StatelessWidget {
     final LocalAuthentication _localAuthentication = LocalAuthentication();
     try {
       bool isAuthenticated = await _localAuthentication.authenticate(
-        localizedReason: 'Authenticate to access the app',
+        localizedReason: 'Authenticate to access your nfc ticket',
         options: const AuthenticationOptions(
           stickyAuth: true,
           biometricOnly: false,
