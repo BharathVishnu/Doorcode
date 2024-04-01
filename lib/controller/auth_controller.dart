@@ -22,6 +22,14 @@ class AuthController extends GetxController {
     ever(_user, loginRedirect);
   }
 
+  void onInit() {
+    super.onInit();
+    _user = Rx<User?>(auth.currentUser);
+    _user.bindStream(auth.authStateChanges());
+    ever(_user, loginRedirect);
+    loginRedirect(_user.value);
+  }
+
   loginRedirect(User? user) {
     Timer(Duration(seconds: isLoging ? 0 : 2), () {
       if (user == null) {
