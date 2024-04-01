@@ -49,12 +49,12 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 50.0),
               buildTextField(
-                  'EMAIL', false, _emailController, 'assets/logo.png', true),
+                  'EMAIL', false, _emailController, 'assets/email.png', true),
               SizedBox(
                 height: 30,
               ),
               buildTextField('PASSWORD', true, _passwordController,
-                  'assets/logo.png', false),
+                  'assets/password.png', false),
               SizedBox(
                 height: 2,
               ),

@@ -36,6 +36,10 @@ flutter:
     - assets/hestia2.png
     - assets/nexera.png
     - assets/nfc.png
+    - assets/password.png
+    - assets/home (4).png
+    - assets/ticket (1) 1.png
+    - assets/user (3) 1.png
 
 
   fonts:
