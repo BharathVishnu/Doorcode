@@ -41,7 +41,7 @@ flutter:
     - assets/home (4).png
     - assets/ticket (1) 1.png
     - assets/user (3) 1.png
-
+    - android/app/src/main/res/mipmap-hdpi/ic_launcher.png
 
   fonts:
     - family: BebasNeue
