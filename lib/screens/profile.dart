@@ -5,6 +5,8 @@ import 'package:doorcode_nfc/screens/listedEvents.dart';
 import 'package:doorcode_nfc/screens/tickets.dart';
 import 'package:doorcode_nfc/screens/validate.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../controller/auth_controller.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -29,7 +31,9 @@ class Profile extends StatelessWidget {
       context,
       MaterialPageRoute(builder: (context) => NFCValidate()),
     );},),
-            CustomContainer(iconPath: 'assets/logo.png', name: 'LOGOUT'),
+            CustomContainer(iconPath: 'assets/logo.png', name: 'LOGOUT',onPressed: () {
+   AuthController.instance.signOut();
+                    },),
             SizedBox(height: 250,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
