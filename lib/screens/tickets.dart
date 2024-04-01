@@ -9,22 +9,29 @@ class NFCTicket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('GET YOUR CODE',style: TextStyle(fontSize: 32,color: Colors.white),),
+        backgroundColor: Colors.white,
+        title: Text(
+          'GET YOUR CODE',
+          style: TextStyle(fontSize: 32, color: Colors.black),
+        ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back,size: 32,color: Colors.white,), // Use the desired icon
+          icon: Icon(
+            Icons.arrow_back,
+            size: 32,
+            color: Colors.black,
+          ), // Use the desired icon
           onPressed: () {
-
-            Navigator.pop(context); 
+            Navigator.pop(context);
           },
         ),
         elevation: 8,
       ),
-       body: Center(
-        child: Column (
-          children:[
-          SizedBox(height: 180,),
-          Stack(
+      body: Center(
+          child: Column(children: [
+        SizedBox(
+          height: 180,
+        ),
+        Stack(
           alignment: Alignment.center,
           children: [
             Container(
@@ -61,14 +68,18 @@ class NFCTicket extends StatelessWidget {
               child: Image.asset(
                 'assets/nfc.png', // Replace 'logo.png' with your logo file
                 fit: BoxFit.contain, // Fit the logo inside the container
-              ),),
+              ),
+            ),
           ],
         ),
-          SizedBox(height: 80,),
-          Text('TAP YOUR PHONE',style: TextStyle(color: Colors.black,fontSize: 40),)
-        ]
-      )
-      ),
+        SizedBox(
+          height: 80,
+        ),
+        Text(
+          'TAP YOUR PHONE',
+          style: TextStyle(color: Colors.black, fontSize: 40),
+        )
+      ])),
     );
   }
 }
