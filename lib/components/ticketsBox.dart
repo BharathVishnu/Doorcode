@@ -1,5 +1,8 @@
 import 'package:doorcode_nfc/screens/tickets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:local_auth/local_auth.dart';
 
 class TicketsBox extends StatelessWidget {
   final String backgroundImagePath;
@@ -19,19 +22,37 @@ class TicketsBox extends StatelessWidget {
     required this.text3,
   }) : super(key: key);
 
+  Future<void> _authenticate(BuildContext context) async {
+    final LocalAuthentication _localAuthentication = LocalAuthentication();
+    try {
+      bool isAuthenticated = await _localAuthentication.authenticate(
+        localizedReason: 'Authenticate to access the app',
+        options: const AuthenticationOptions(
+          stickyAuth: true,
+          biometricOnly: false,
+        ),
+      );
+      if (isAuthenticated) {
+        // Authentication successful, navigate to NFCTicket screen
+        Get.to(NFCTicket());
+      } else {
+        // Authentication failed
+        print('Authentication failed');
+      }
+    } on PlatformException catch (e) {
+      // Platform-specific error handling
+      print('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Navigate to another page
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => NFCTicket()),
-        );
-      },
+      onTap: () => _authenticate(context),
       child: Container(
         width: 320,
         height: 180,
+   
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), // Make the container rounded
           boxShadow: [
