@@ -1,6 +1,8 @@
 import 'package:doorcode_nfc/components/artists.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:doorcode_nfc/components/viewer.dart';
 
@@ -86,9 +88,11 @@ class Booking extends StatelessWidget {
                       Icon(Icons.calendar_today),
                       SizedBox(width: 8),
                       Text(
-                        'Friday  22 MAR  2024   7.00 pm to 11.00 pm',
+                        '${_formatDate(event['date_from'])} to ${_formatDate(event['date_to'])}',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
                       ),
                     ],
                   ),
@@ -173,9 +177,7 @@ class Booking extends StatelessWidget {
                   ),
                   Spacer(),
                   ElevatedButton(
-                    onPressed: () {
-                      // Add functionality for booking button
-                    },
+                    onPressed: () => _bookEvent(eventId),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       shape: RoundedRectangleBorder(
@@ -211,6 +213,129 @@ class Booking extends StatelessWidget {
       await launchUrl(url as Uri);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  void _bookEvent(int eventId) async {
+    // Fetch event information
+    final eventInfoSnapshot = await FirebaseFirestore.instance
+        .collection('event_info')
+        .where('event_id', isEqualTo: eventId)
+        .get();
+
+    if (eventInfoSnapshot.docs.isNotEmpty) {
+      final eventInfo = eventInfoSnapshot.docs.first.data();
+      final venue = eventInfo['venue'] ?? '';
+      final dateFrom = eventInfo['date_from'] ?? '';
+      final dateTo = eventInfo['date_to'] ?? '';
+      final eventName = eventInfo['event_name'] ?? '';
+
+      // Get current user's email
+      final currentUser = FirebaseAuth.instance.currentUser;
+      final email = currentUser?.email ?? '';
+
+      // Generate entry code
+      final entryCode = '$eventId@$email';
+
+      // Store ticket information to the tickets collection
+      await FirebaseFirestore.instance.collection('tickets').add({
+        'event_id': eventId,
+        'venue': venue,
+        'date_from': dateFrom,
+        'date_to': dateTo,
+        'event_name': eventName,
+        'email': email,
+        'entry_code': entryCode,
+      });
+
+      // Store event information to the validation collection
+      await FirebaseFirestore.instance
+          .collection('validation')
+          .doc(eventId.toString())
+          .set({
+        'event_name': eventName,
+        'event_id': eventId,
+        'entry_codes': FieldValue.arrayUnion([entryCode]),
+      });
+
+      getSuccessSnackBar("Ticket Booked Successfully");
+    }
+  }
+
+  getSuccessSnackBar(String message) {
+    Get.snackbar(
+      "Success",
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.grey,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    );
+  }
+
+  String _formatDate(Timestamp? timestamp) {
+    if (timestamp == null) return '';
+
+    // Convert Timestamp to DateTime
+    final date = timestamp.toDate();
+
+    // Format the DateTime object
+    final formattedDate =
+        '${_getWeekday(date.weekday)} ${date.day} ${_getMonth(date.month)} ${date.year}';
+
+    return formattedDate;
+  }
+
+  String _getWeekday(int weekday) {
+    switch (weekday) {
+      case 1:
+        return 'Monday';
+      case 2:
+        return 'Tuesday';
+      case 3:
+        return 'Wednesday';
+      case 4:
+        return 'Thursday';
+      case 5:
+        return 'Friday';
+      case 6:
+        return 'Saturday';
+      case 7:
+        return 'Sunday';
+      default:
+        return '';
+    }
+  }
+
+  String _getMonth(int month) {
+    switch (month) {
+      case 1:
+        return 'JAN';
+      case 2:
+        return 'FEB';
+      case 3:
+        return 'MAR';
+      case 4:
+        return 'APR';
+      case 5:
+        return 'MAY';
+      case 6:
+        return 'JUN';
+      case 7:
+        return 'JUL';
+      case 8:
+        return 'AUG';
+      case 9:
+        return 'SEP';
+      case 10:
+        return 'OCT';
+      case 11:
+        return 'NOV';
+      case 12:
+        return 'DEC';
+      default:
+        return '';
     }
   }
 }
