@@ -115,7 +115,7 @@ class Booking extends StatelessWidget {
                       SizedBox(width: 45),
                       TextButton(
                         onPressed: () {
-                          _launchMapsUrl(event['venue']);
+                          launchMap(event['venue']);
                         },
                         child: Text(
                           'VIEW ON MAP',
@@ -206,13 +206,13 @@ class Booking extends StatelessWidget {
     );
   }
 
-  // Function to launch Google Maps URL
-  void _launchMapsUrl(String location) async {
+// Function to launch Google Maps URL
+  void launchMap(String location) async {
     final url = 'https://www.google.com/maps/search/?api=1&query=$location';
-    if (await canLaunchUrl(url as Uri)) {
-      await launchUrl(url as Uri);
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch Google Maps.'; // More specific error message
     }
   }
 
