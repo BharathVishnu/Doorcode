@@ -8,7 +8,9 @@ import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Get.put(AuthController());
   runApp(MyApp());
 }
@@ -20,14 +22,14 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    
+
     return GetMaterialApp(
       title: 'My Splash Screen App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         fontFamily: 'BebasNeue', //default font
       ),
-      home: SplashScreen(),//splash screen made default
+      home: SplashScreen(), //splash screen made default
     );
   }
 }
