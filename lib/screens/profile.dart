@@ -1,7 +1,7 @@
 import 'package:doorcode_nfc/components/bar.dart';
 import 'package:doorcode_nfc/components/profileBar.dart';
 import 'package:doorcode_nfc/screens/accountInfo.dart';
-import 'package:doorcode_nfc/screens/listEvent.dart';
+import 'package:doorcode_nfc/screens/event_registration_page.dart';
 import 'package:doorcode_nfc/screens/listedEvents.dart';
 import 'package:doorcode_nfc/screens/tickets.dart';
 import 'package:doorcode_nfc/screens/validate.dart';
@@ -30,7 +30,7 @@ class Profile extends StatelessWidget {
             CustomContainer(iconPath: 'assets/logo.png', name: 'LIST YOUR SHOW',onPressed: () {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ListEvent()),
+      MaterialPageRoute(builder: (context) => EventRegistrationPage()),
     );},),
             CustomContainer(iconPath: 'assets/logo.png', name: 'LOGOUT',onPressed: () {
    AuthController.instance.signOut();

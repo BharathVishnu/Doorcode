@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
 
 class GenderSelection extends StatefulWidget {
-  final String initialGender = 'male'; // default value
-  final ValueChanged<String> onChanged = (value) {}; // default empty function
+  final String initialGender;
+  final ValueChanged<String> onChanged;
 
   GenderSelection({
     String? initialGender,
-    ValueChanged<String>? onChanged,
-  }) {
-    if (initialGender != null) {
-      initialGender = initialGender;
-    }
-    if (onChanged != null) {
-      onChanged = onChanged;
-    }
-  }
+    required ValueChanged<String> onChanged,
+  })  : initialGender =
+            initialGender ?? '', // Set initialGender to empty string if null
+        onChanged = onChanged;
 
   @override
   _GenderSelectionState createState() => _GenderSelectionState();
 }
 
 class _GenderSelectionState extends State<GenderSelection> {
-  String? _selectedGender;
+  late String _selectedGender;
 
   @override
   void initState() {
     super.initState();
-    _selectedGender = widget.initialGender;
+    _selectedGender = widget.initialGender ?? '';
   }
 
   @override
@@ -37,7 +32,9 @@ class _GenderSelectionState extends State<GenderSelection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(width: 44,),
+            SizedBox(
+              width: 44,
+            ),
             Expanded(
               child: Text(
                 "GENDER",
@@ -66,8 +63,8 @@ class _GenderSelectionState extends State<GenderSelection> {
                   groupValue: _selectedGender,
                   onChanged: (value) {
                     setState(() {
-                      _selectedGender = value;
-                      widget.onChanged(_selectedGender!);
+                      _selectedGender = value!;
+                      widget.onChanged(_selectedGender);
                     });
                   },
                 ),
@@ -79,8 +76,8 @@ class _GenderSelectionState extends State<GenderSelection> {
                   groupValue: _selectedGender,
                   onChanged: (value) {
                     setState(() {
-                      _selectedGender = value;
-                      widget.onChanged(_selectedGender!);
+                      _selectedGender = value!;
+                      widget.onChanged(_selectedGender);
                     });
                   },
                 ),
@@ -92,8 +89,8 @@ class _GenderSelectionState extends State<GenderSelection> {
                   groupValue: _selectedGender,
                   onChanged: (value) {
                     setState(() {
-                      _selectedGender = value;
-                      widget.onChanged(_selectedGender!);
+                      _selectedGender = value!;
+                      widget.onChanged(_selectedGender);
                     });
                   },
                 ),

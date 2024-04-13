@@ -26,7 +26,9 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(width: 44,), 
+            SizedBox(
+              width: 44,
+            ),
             Expanded(
               child: Text(
                 widget.label,
@@ -38,7 +40,10 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
             ),
             if (isEditing)
               IconButton(
-                icon: Icon(Icons.check,color: Colors.green,),
+                icon: Icon(
+                  Icons.check,
+                  color: Colors.green,
+                ),
                 onPressed: () {
                   setState(() {
                     isEditing = false;
@@ -48,10 +53,31 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
               )
             else
               IconButton(
-                icon: Icon(Icons.edit,color: Colors.red,),
+                icon: Icon(
+                  Icons.edit,
+                  color: Colors.red,
+                ),
                 onPressed: () {
-                  setState(() {
-                    isEditing = true;
+                  setState(() async {
+                    if (widget.label == 'DOB') {
+                      final DateTime? picked = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime.now(),
+                      );
+                      if (picked != null) {
+                        widget.controller.text = picked
+                            .toString()
+                            .split(' ')[0]; // Only the date without the time
+                      }
+                    } 
+                    else {
+                      setState(() {
+                      isEditing = true;
+                      }
+                     );
+                    }
                   });
                 },
               ),
@@ -75,7 +101,7 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
-                contentPadding: EdgeInsets.only( top: 16, bottom: 16),
+                contentPadding: EdgeInsets.only(top: 16, bottom: 16),
                 hintStyle: TextStyle(color: Colors.grey[600]),
               ),
             ),

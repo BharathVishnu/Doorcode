@@ -10,14 +10,16 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   firebase_auth: ^4.17.9
-  firebase_core: ^2.27.1
+  firebase_core: ^2.29.0
   get: ^4.6.6
-  cloud_firestore: ^4.15.9
+  cloud_firestore: ^4.16.1
   geolocator: ^7.7.0
   carousel_slider: ^4.0.0
   image_picker: ^0.8.4+4
   url_launcher: ^6.0.9
   local_auth: ^2.2.0
+  firebase_storage: ^11.7.1
+  path: ^1.9.0
   
 dev_dependencies:
   flutter_test:
@@ -42,6 +44,7 @@ flutter:
     - assets/ticket (1) 1.png
     - assets/user (3) 1.png
     - android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+    - assets/ADD_IMAGE.png
 
   fonts:
     - family: BebasNeue
