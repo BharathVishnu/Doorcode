@@ -34,28 +34,34 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Padding(
               padding: EdgeInsets.only(top: 14, left: 15),
-              child: CustomIcon(imagePath: 'assets/home (4).png'),
+              child: _selectedIndex == 0
+                  ? CustomIcon(imagePath: 'assets/home (4).png')
+                  : CustomIcon(imagePath: 'assets/home-1.png'),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: EdgeInsets.only(top: 14),
-              child: CustomIcon(imagePath: 'assets/ticket (1) 1.png'),
+              child: _selectedIndex == 1
+                  ? CustomIcon(imagePath: 'assets/ticket.png')
+                  : CustomIcon(imagePath: 'assets/ticket (1) 1.png'),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: EdgeInsets.only(top: 14, right: 14),
-              child: CustomIcon(imagePath: 'assets/user (3) 1.png'),
+              child: _selectedIndex == 2
+                  ? CustomIcon(imagePath: 'assets/user.png')
+                  : CustomIcon(imagePath: 'assets/user (3) 1.png'),
             ),
             label: '',
           ),
         ],
         backgroundColor: Colors.white,
-        elevation: 8,
-        iconSize: 35,
+        elevation: 24,
+        iconSize: 25,
         selectedIconTheme:
             IconThemeData(color: Colors.black), // Set selected icon color
         unselectedIconTheme:
