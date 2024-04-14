@@ -23,7 +23,7 @@ class Carousel extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(width: 15.0),
+                  SizedBox(width: 35.0),
                   ScrollableElement(
                     image: 'assets/logo.png',
                     label: 'Concerts',
