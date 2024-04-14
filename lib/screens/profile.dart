@@ -22,7 +22,7 @@ class Profile extends StatelessWidget {
         body: Column(
           children: [
             CustomContainer(
-              iconPath: 'assets/logo.png',
+              iconPath: 'assets/yourevents.png',
               name: 'YOUR EVENTS',
               onPressed: () {
                 Navigator.push(
@@ -32,7 +32,7 @@ class Profile extends StatelessWidget {
               },
             ),
             CustomContainer(
-              iconPath: 'assets/logo.png',
+              iconPath: 'assets/accountinfo.png',
               name: 'ACCOUNT INFORMATION',
               onPressed: () {
                 Navigator.push(
@@ -42,7 +42,7 @@ class Profile extends StatelessWidget {
               },
             ),
             CustomContainer(
-              iconPath: 'assets/logo.png',
+              iconPath: 'assets/listurshow.png',
               name: 'LIST YOUR SHOW',
               onPressed: () {
                 Navigator.push(
@@ -53,7 +53,7 @@ class Profile extends StatelessWidget {
               },
             ),
             CustomContainer(
-              iconPath: 'assets/logo.png',
+              iconPath: 'assets/logout.png',
               name: 'LOGOUT',
               onPressed: () {
                 AuthController.instance.signOut();
