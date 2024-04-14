@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:doorcode_nfc/components/eventsList.dart';
 import 'package:doorcode_nfc/screens/profile.dart';
 import 'package:doorcode_nfc/screens/ticketsList.dart';
-import 'package:flutter/material.dart';
 import 'package:doorcode_nfc/screens/events.dart';
 import 'package:doorcode_nfc/components/customIcon.dart';
 
@@ -12,23 +12,47 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  final List<Widget> _pages = [
-    Events(),
-    TicketsPage(),
-    Profile(),
-    // Use Page2 widget
-  ];
+  late PageController _pageController = PageController(initialPage: 0);
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _selectedIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _pageController.animateToPage(
+        _selectedIndex,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.ease,
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        children: <Widget>[
+          Events(),
+          TicketsPage(),
+          Profile(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
