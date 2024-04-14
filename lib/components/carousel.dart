@@ -25,7 +25,7 @@ class Carousel extends StatelessWidget {
                 children: [
                   SizedBox(width: 35.0),
                   ScrollableElement(
-                    image: 'assets/logo.png',
+                    image: 'assets/microphone.png',
                     label: 'Concerts',
                     onTap: () {
                       onIconClicked('Concerts');
@@ -33,7 +33,7 @@ class Carousel extends StatelessWidget {
                   ),
                   SizedBox(width: 55.0),
                   ScrollableElement(
-                    image: 'assets/logo.png',
+                    image: 'assets/clubs.png',
                     label: 'Clubs',
                     onTap: () {
                       onIconClicked('Clubs');
@@ -41,7 +41,7 @@ class Carousel extends StatelessWidget {
                   ),
                   SizedBox(width: 55.0),
                   ScrollableElement(
-                    image: 'assets/logo.png',
+                    image: 'assets/sports.png',
                     label: 'Sports',
                     onTap: () {
                       onIconClicked('Sports');
@@ -49,7 +49,7 @@ class Carousel extends StatelessWidget {
                   ),
                   SizedBox(width: 55.0),
                   ScrollableElement(
-                    image: 'assets/logo.png',
+                    image: 'assets/standup.png',
                     label: 'Standups',
                     onTap: () {
                       onIconClicked('Standups');

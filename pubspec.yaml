@@ -54,6 +54,10 @@ flutter:
     - assets/listurshow.png
     - assets/logout.png
     - assets/accountinfo.png
+    - assets/microphone.png
+    - assets/clubs.png
+    - assets/standup.png
+    - assets/sports.png
   
 
 
