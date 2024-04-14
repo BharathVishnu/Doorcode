@@ -47,7 +47,7 @@ class TicketsPage extends StatelessWidget {
                 children: [
                   SizedBox(height: 20),
                   TicketsBox(
-                    backgroundImagePath: 'assets/hestia2.png',
+                    backgroundImagePath: ticketData['image_url'],
                     iconPath1: 'assets/logo.png',
                     iconPath2: 'assets/logo.png',
                     text1: ticketData['event_name'],

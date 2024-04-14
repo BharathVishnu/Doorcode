@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(top: 14, left: 15),
               child: _selectedIndex == 0
                   ? CustomIcon(imagePath: 'assets/home (4).png')
-                  : CustomIcon(imagePath: 'assets/home-1.png'),
+                  : CustomIcon(imagePath: 'assets/home new.png'),
             ),
             label: '',
           ),
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             icon: Padding(
               padding: EdgeInsets.only(top: 14),
               child: _selectedIndex == 1
-                  ? CustomIcon(imagePath: 'assets/ticket.png')
+                  ? CustomIcon(imagePath: 'assets/ticket new.png')
                   : CustomIcon(imagePath: 'assets/ticket (1) 1.png'),
             ),
             label: '',

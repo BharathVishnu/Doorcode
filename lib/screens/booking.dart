@@ -63,20 +63,24 @@ class Booking extends StatelessWidget {
                 children: [
                   SizedBox(height: 20),
                   Container(
-                    width: 320,
-                    height: 180,
+                    margin: EdgeInsets.only(left: 10), // Add margin
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey,
                           spreadRadius: 3,
                           blurRadius: 7,
-                          offset: Offset(0, 9),
+                          offset: Offset(0, 9), // changes position of shadow
                         ),
                       ],
-                      image: DecorationImage(
-                        image: AssetImage('assets/hestia2.png'),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Image.network(
+                        event['image_url'], // Use the image URL here
+                        height: 180,
+                        width: 320,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -229,6 +233,7 @@ class Booking extends StatelessWidget {
       final dateFrom = eventInfo['date_from'] ?? '';
       final dateTo = eventInfo['date_to'] ?? '';
       final eventName = eventInfo['event_name'] ?? '';
+      final eventImage = eventInfo['image_url'] ?? '';
 
       // Get current user's email
       final currentUser = FirebaseAuth.instance.currentUser;
@@ -246,6 +251,7 @@ class Booking extends StatelessWidget {
         'event_name': eventName,
         'email': email,
         'entry_code': entryCode,
+        'image_url': eventImage,
       });
 
       // Store event information to the validation collection
@@ -255,6 +261,7 @@ class Booking extends StatelessWidget {
           .set({
         'event_name': eventName,
         'event_id': eventId,
+        'image_url':  eventImage,
         'entry_codes': FieldValue.arrayUnion([entryCode]),
       });
 

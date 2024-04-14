@@ -88,6 +88,25 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
     }
   }
 
+  void resetFields() {
+  _eventNameController.clear();
+  _cityController.clear();
+  _venueController.clear();
+  _moreInfoController.clear();
+  _artistsController.clear();
+  _eventRateController.clear();
+  _accountHolderNameController.clear();
+  _bankNameController.clear();
+  _accountNumberController.clear();
+  _bankIFSCController.clear();
+  _startDate = null;
+  _endDate = null;
+  _startTime = null;
+  _endTime = null;
+  _imageUrl = '';
+  _eventType = '';
+}
+
   // Function to handle form submission
   Future<void> submitForm() async {
     // Upload image if selected
@@ -134,6 +153,7 @@ class _EventRegistrationPageState extends State<EventRegistrationPage> {
       await FirebaseFirestore.instance.collection('event_info').add(eventData);
       print('Event data stored successfully.');
       getSuccessSnackBar("Event added successfully");
+      resetFields();
     } catch (e) {
       print('Failed to store event data: $e');
       getErrorSnackBarNew("Failed to add the event");

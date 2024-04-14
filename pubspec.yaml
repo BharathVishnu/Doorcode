@@ -46,6 +46,8 @@ flutter:
     - android/app/src/main/res/mipmap-hdpi/ic_launcher.png
     - assets/ADD_IMAGE.png
     - assets/home-1.png
+    - assets/home new.png
+    - assets/ticket new.png
     - assets/ticket.png
 
 

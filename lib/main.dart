@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'My Splash Screen App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
         fontFamily: 'BebasNeue', //default font
       ),
       home: SplashScreen(), //splash screen made default

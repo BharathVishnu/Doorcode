@@ -41,16 +41,11 @@ class _MyBoxState extends State<MyBox> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Container(
+              child: Image.network(
+                widget.imagePath, // Use the image URL here
                 height: 190,
                 width: 150,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(widget.imagePath),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
+                fit: BoxFit.cover,
               ),
             ),
           ),
