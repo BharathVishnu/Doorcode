@@ -50,12 +50,11 @@ class _RegisterState extends State<Register> {
                 ),
               ),
               SizedBox(height: 20.0),
-              buildTextField('NAME', false, _nameController, 'assets/logo.png', true),
-              SizedBox(height: 2.0),
-              buildTextField('EMAIL', false, _emailController, 'assets/logo.png', true),
-              buildTextField('PHONE NO', false, _phoneController, 'assets/logo.png', true),
-              buildTextField('PASSWORD', true, _passwordController, 'assets/logo.png', false),
-              buildTextField('CONFIRM PASSWORD', true, _cnfPassController, 'assets/logo.png', false),
+              buildTextField('NAME', false, _nameController, 'assets/profile.png', true),
+              buildTextField('EMAIL', false, _emailController, 'assets/email.png', true),
+              buildTextField('PHONE NO', false, _phoneController, 'assets/phone.png', true),
+              buildTextField('PASSWORD', true, _passwordController, 'assets/password.png', false),
+              buildTextField('CONFIRM PASSWORD', true, _cnfPassController, 'assets/password.png', false),
               SizedBox(height: 24,),
               Center(
                 child: SizedBox(

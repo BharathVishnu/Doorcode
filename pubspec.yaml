@@ -50,6 +50,16 @@ flutter:
     - assets/home new.png
     - assets/ticket new.png
     - assets/ticket.png
+    - assets/profile.png
+    - assets/yourevents.png
+    - assets/listurshow.png
+    - assets/logout.png
+    - assets/accountinfo.png
+    - assets/microphone.png
+    - assets/clubs.png
+    - assets/standup.png
+    - assets/sports.png
+  
 
 
   fonts:
