@@ -1,19 +1,21 @@
 import 'package:doorcode_nfc/screens/tickets.dart';
+import 'package:doorcode_nfc/screens/validate_ticket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TicketsBox extends StatelessWidget {
+class TicketsBoxVal extends StatelessWidget {
   final String backgroundImagePath;
   final String iconPath1;
   final String iconPath2;
   final String text1;
   final String text2;
   final String text3;
-  final String entryCode;
+  final int eventId;
 
-  const TicketsBox({
+  const TicketsBoxVal({
     Key? key,
     required this.backgroundImagePath,
     required this.iconPath1,
@@ -21,7 +23,7 @@ class TicketsBox extends StatelessWidget {
     required this.text1,
     required this.text2,
     required this.text3, 
-    required this.entryCode,
+    required this.eventId,
   }) : super(key: key);
 
   Future<void> _authenticate(BuildContext context) async {
@@ -35,8 +37,7 @@ class TicketsBox extends StatelessWidget {
         ),
       );
       if (isAuthenticated) {
-        // Authentication successful, navigate to NFCTicket screen
-        Get.to(NFCTicket(entryCode: entryCode,));
+        Get.to(NFCTicketVal(eventId: eventId,));
       } else {
         // Authentication failed
         print('Authentication failed');

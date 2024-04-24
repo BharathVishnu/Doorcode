@@ -20,6 +20,7 @@ dependencies:
   local_auth: ^2.2.0
   firebase_storage: ^11.7.1
   path: ^1.9.0
+  nfc_manager: ^3.4.0
   
 dev_dependencies:
   flutter_test:

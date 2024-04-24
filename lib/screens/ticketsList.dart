@@ -53,6 +53,7 @@ class TicketsPage extends StatelessWidget {
                     text1: ticketData['event_name'],
                     text2: _formatDate(ticketData['date_from']),
                     text3: ticketData['venue'] ?? '',
+                    entryCode: ticketData['entry_code']?? '',
                   ),
                   SizedBox(height: 24),
                 ],

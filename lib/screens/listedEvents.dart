@@ -1,5 +1,5 @@
+import 'package:doorcode_nfc/components/ticketsBoxVal.dart';
 import 'package:flutter/material.dart';
-import 'package:doorcode_nfc/components/ticketsBox.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -46,13 +46,14 @@ class ListedEvents extends StatelessWidget {
               return Column(
                 children: [
                   SizedBox(height: 20),
-                  TicketsBox(
+                  TicketsBoxVal(
                     backgroundImagePath: ticketData['image_url'],
                     iconPath1: 'assets/logo.png',
                     iconPath2: 'assets/logo.png',
                     text1: ticketData['event_name'],
                     text2: _formatDate(ticketData['date_from']),
                     text3: ticketData['venue'] ?? '',
+                    eventId: ticketData['event_id'] ?? '',
                   ),
                   SizedBox(height: 24),
                 ],
