@@ -25,7 +25,7 @@ class CustomContainer extends StatelessWidget {
           border: Border(
             bottom: BorderSide(
               color: Colors.black,
-              width: 2.0, // Adjust the width as needed
+              width: 1.0, // Adjust the width as needed
             ),
           ),
         ),

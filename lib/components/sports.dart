@@ -34,7 +34,7 @@ class Sports extends StatelessWidget {
               itemBuilder: (context, index) {
                 final event = events[index].data() as Map<String, dynamic>;
                 return MyBox(
-                  'assets/hestia.png',
+                  event['image_url'],
                   event['event_id'], 
                   event['email'],    
                    // Assuming image_url is a field in your event document

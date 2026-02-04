@@ -9,10 +9,10 @@ class NFCValidate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('VALIDATE TICKETS',style: TextStyle(fontSize: 32,color: Colors.white),),
+        backgroundColor: Colors.white,
+        title: Text('VALIDATE TICKETS',style: TextStyle(fontSize: 32,color: Colors.black),),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back,size: 32,color: Colors.white,), // Use the desired icon
+          icon: Icon(Icons.arrow_back,size: 32,color: Colors.black,), // Use the desired icon
           onPressed: () {
 
             Navigator.pop(context); 
